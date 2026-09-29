@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recruiter Email"
+  short_description: "Draft recruiter emails tailored to the company and role"
+  default_prompt: "Use $recruiter-email to draft a concise recruiter email using this company's website, the target role, and my confirmed experience."
