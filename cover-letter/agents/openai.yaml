@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cover Letter"
+  short_description: "Tailor cover letters and verify readable PDFs"
+  default_prompt: "Use $cover-letter to tailor a cover letter to this job using my latest resume and established formatting preferences."
