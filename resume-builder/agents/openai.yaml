@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume"
+  short_description: "Research, write, design, and verify tailored resumes"
+  default_prompt: "Use $resume-builder to create or refine my resume using confirmed experience, relevant job requirements, and verified final documents."
