@@ -1,0 +1,4 @@
+interface:
+  display_name: "Application Tracker"
+  short_description: "Track applications, interviews, and follow-up actions"
+  default_prompt: "Use $application-tracker to update my Excel application tracker with these changes, preserve its history and manual edits, and show my next actions."
