@@ -1,0 +1,4 @@
+interface:
+  display_name: "Job Search"
+  short_description: "Research jobs and maintain a verified Excel shortlist"
+  default_prompt: "Use $job-search to find recent jobs matching my saved profile and update my Excel tracker with verified application links while preserving my notes and application history."
