@@ -1,0 +1,4 @@
+interface:
+  display_name: "Job Application"
+  short_description: "Answer application questions from text or HTML forms"
+  default_prompt: "Use $job-application to extract questions from this application text or HTML and draft answers using my confirmed experience and saved preferences."
