@@ -1,0 +1,42 @@
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+.idea/
+.vscode/
+
+# Credentials and local agent configuration
+.env
+.env.*
+!.env.example
+.agents/
+.codex/
+.claude/
+.cursor/
+
+# Candidate data and generated deliverables belong in a private workspace
+/candidate/
+/candidates/
+/outputs/
+/source/
+/research/
+/cover_letters/
+/outreach/
+/applications/
+/private/
+/tmp/
+/dist/
+*.pdf
+*.docx
+*.xlsx
+*.xls
+*.csv
+*.html
+
+# Only explicitly synthetic fixtures may be checked in
+!tests/fixtures/**
