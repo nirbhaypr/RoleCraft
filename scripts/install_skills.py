@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy selected Job OS skills into a local skills directory without overwriting."""
+"""Copy selected RoleCraft skills into a local skills directory without overwriting."""
 
 import argparse
 from pathlib import Path
@@ -53,7 +53,7 @@ def install(names, destination, *, root=ROOT, dry_run=False):
     destination.mkdir(parents=True, exist_ok=True)
     created = []
     try:
-        with tempfile.TemporaryDirectory(prefix=".job-os-install-", dir=destination) as staging:
+        with tempfile.TemporaryDirectory(prefix=".rolecraft-install-", dir=destination) as staging:
             for name in selected:
                 staged = Path(staging) / name
                 shutil.copytree(available[name], staged, ignore=IGNORED)

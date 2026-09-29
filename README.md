@@ -1,4 +1,4 @@
-# Job OS
+# RoleCraft
 
 Reusable Agent Skills for the job hunt: build an evidence-based resume, find suitable openings, tailor applications, contact recruiters, and keep track of what happens next.
 
@@ -21,6 +21,11 @@ These are agent workflows. They do not run a background job-search service or a 
 ## Install
 
 Clone or download this repository, then run the commands below from its root. The installer requires Python 3.11 or newer and uses only the standard library. On Windows, use `py -3` if `python3` is unavailable.
+
+```bash
+git clone https://github.com/nirbhaypr/RoleCraft.git
+cd RoleCraft
+```
 
 ### Codex
 
