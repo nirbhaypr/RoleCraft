@@ -1,0 +1,13 @@
+{
+  "name": "Alex Example",
+  "date": "1 January 2026",
+  "company": "Example Company",
+  "role": "Software Engineer",
+  "reference": "DEMO-001",
+  "recipient": ["Hiring Team", "Example Company"],
+  "contact_lines": [[{"text": "alex@example.com", "href": "mailto:alex@example.com"}]],
+  "paragraphs": [
+    "This is fictional content used to test document generation. It is not a real candidate's application or evidence of employment.",
+    "The renderer should preserve this complete text, including characters such as <, >, and &, while producing a readable document with selectable text."
+  ]
+}
