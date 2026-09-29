@@ -1,0 +1,4 @@
+interface:
+  display_name: "Candidate Profile"
+  short_description: "View and update job preferences without editing resumes"
+  default_prompt: "Use $candidate-profile to show or update my saved job preferences, compensation expectations, and availability while keeping my resume unchanged."
