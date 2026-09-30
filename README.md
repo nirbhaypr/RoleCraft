@@ -16,51 +16,51 @@ Use the skills individually or together with Codex, Claude Code, or another agen
 | [recruiter-email](recruiter-email/SKILL.md) | Researches a company or opening and drafts outreach | A subject line and concise cold email or follow-up |
 | [application-tracker](application-tracker/SKILL.md) | Records stages, interviews, deadlines, materials, and outcomes | Updated Excel records, dated history, and next-action reviews |
 
-These are agent workflows. They do not run a background job-search service or a hosted application. The included Python tools handle installation, package validation, and optional cover-letter PDF generation.
+These are agent workflows. They do not run a background job-search service or a hosted application. The included Python helpers support local package validation and optional cover-letter PDF generation.
 
 ## Install
 
-Clone or download this repository, then run the commands below from its root. The installer requires Python 3.11 or newer and uses only the standard library. On Windows, use `py -3` if `python3` is unavailable.
+With Node.js and npm installed, run this from the project where you want to use the skills:
 
 ```bash
-git clone https://github.com/nirbhaypr/RoleCraft.git
-cd RoleCraft
+npx skills add nirbhaypr/RoleCraft
 ```
 
-### Codex
+The [Skills CLI](https://github.com/vercel-labs/skills#usage) lets you choose which skills to install and which agents to use. Installation is project-scoped by default; add `--global` to make the skills available across your projects. You do not need to clone this repository or install Python to install the skills.
+
+### All skills for a specific agent
 
 ```bash
-python3 scripts/install_skills.py --all --agent codex
+# Codex
+npx skills add nirbhaypr/RoleCraft --skill '*' --agent codex
+
+# Claude Code
+npx skills add nirbhaypr/RoleCraft --skill '*' --agent claude-code
+
+# Both agents, available across projects
+npx skills add nirbhaypr/RoleCraft --skill '*' --agent codex claude-code --global
 ```
 
-This copies the skills to `~/.agents/skills/`. In Codex CLI or the IDE extension, invoke a skill with `$candidate-profile`, `$resume-builder`, or another skill name. See the [official Codex skill documentation](https://learn.chatgpt.com/docs/build-skills) for discovery and host-specific controls.
-
-### Claude Code
+### Browse or install selected skills
 
 ```bash
-python3 scripts/install_skills.py --all --agent claude
+# List available skills without installing them.
+npx skills add nirbhaypr/RoleCraft --list
+
+# Install only candidate preferences and resume building for Claude Code.
+npx skills add nirbhaypr/RoleCraft --skill candidate-profile resume-builder --agent claude-code
 ```
 
-This copies the same skill packages to `~/.claude/skills/`. Invoke them with `/candidate-profile`, `/resume-builder`, or another skill name. See the [official Claude Code skill documentation](https://code.claude.com/docs/en/skills) for discovery and configuration.
+Choose another supported agent in the interactive installer, or pass its identifier with `--agent`. Keep the `'*'` quoted so your shell does not expand it into filenames. See the [Skills CLI options](https://github.com/vercel-labs/skills#options) for installation methods and supported flags.
 
-### Selected skills, project installs, and other agents
+### List and update installed skills
 
 ```bash
-# Install only the workflows you need.
-python3 scripts/install_skills.py candidate-profile resume-builder --agent claude
-
-# Preview a project-scoped Codex installation without writing files.
-python3 scripts/install_skills.py --all --dest /path/to/private-job-hunt/.agents/skills --dry-run
-
-# Install into another compatible agent's documented skills directory.
-python3 scripts/install_skills.py --all --dest /path/to/agent/skills
+npx skills list
+npx skills update resume-builder
 ```
 
-For a Claude Code project, use the project's `.claude/skills/` directory. Replace example paths with your actual workspace. `--dest` overrides the personal location selected by `--agent`.
-
-The installer copies complete folders, supporting files, and the project license. It refuses existing destinations before installing any selected skill. For updates, back up and move the affected installed folders outside the agent's discovery directory, then reinstall from the updated checkout. Installation does not change agent configuration, connect accounts, or grant tool permissions.
-
-Manual installation is also possible: copy each chosen skill folder and include the root `LICENSE` in the copied package. Preserve the cover-letter fonts' `assets/OFL.txt`.
+The update command above targets the selected skill. Python and document tools are only needed when running workflows that use them; see the optional PDF renderer and development setup below.
 
 ## Agent compatibility
 
@@ -73,8 +73,8 @@ The portable entrypoint is each folder's `SKILL.md`, with standard `name` and `d
 | Host | How to use the collection |
 | --- | --- |
 | Codex CLI / IDE | Install with `--agent codex`; invoke with `$skill-name` |
-| Claude Code | Install with `--agent claude`; invoke with `/skill-name` |
-| Other Agent Skills hosts | Use `--dest` with the host's documented path and its invocation mechanism |
+| Claude Code | Install with `--agent claude-code`; invoke with `/skill-name` |
+| Other Agent Skills hosts | Select a supported agent in the Skills CLI and use its invocation mechanism |
 | Agents without skill discovery | Supply the relevant `SKILL.md` and referenced resources manually; automatic selection is not provided |
 
 The package format is portable; available actions depend on the host. Live job verification needs web access. Document creation and tracker editing need file tools. Text-only environments can draft content but cannot produce or verify files without those capabilities. A hosted chat product may have a different upload mechanism from its command-line agent.
@@ -123,7 +123,7 @@ Typical tracked stages are Saved, Preparing, Applied, Screening, Interviewing, O
 
 ## Optional PDF renderer
 
-The cover-letter skill includes a standalone renderer with bundled Source Sans 3 fonts. It verifies complete extracted text using two PDF readers before publishing a PDF. Visual inspection remains part of the workflow.
+The cover-letter skill includes a standalone renderer with bundled Source Sans 3 fonts. It verifies complete extracted text using two PDF readers before publishing a PDF. Visual inspection remains part of the workflow. To run the helper directly, use the following commands from a local checkout of this repository.
 
 ```bash
 python3 -m venv .venv
@@ -146,7 +146,11 @@ HTML support is an agent-guided intake workflow, not a universal ATS parser. Sta
 
 ## Development and validation
 
+For contributions or local validation, use Python 3.11 or newer, clone the repository, and run the checks from its root:
+
 ```bash
+git clone https://github.com/nirbhaypr/RoleCraft.git
+cd RoleCraft
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
 .venv/bin/python scripts/validate_skills.py
